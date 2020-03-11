@@ -6,6 +6,7 @@ import './map.css'
 function NaverMapAPI({ latLng }) {
     const [storeData, setStoreData] = useState([])
     const [position, setPosition] = useState(latLng)
+    console.log(position)
     const MaskData = async () => {
         try {
             const data = await axios.get(`https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${position.lat}&lng=${position.lng}&m=1000`)
@@ -61,6 +62,7 @@ function NaverMapAPI({ latLng }) {
                 position: 'relative'
             }}
             defaultZoom={17}
+            defaultCenter={{ lat: 35.16718, lng: 129.0524921 }}
             center={position}
             onCenterChanged={center => setPosition({ lat: center._lat, lng: center._lng })}
             onDragend={() => MaskData()}
